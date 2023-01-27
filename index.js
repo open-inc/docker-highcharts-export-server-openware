@@ -25,19 +25,21 @@ async function main() {
   app.post("/base64", function (req, res) {
     if (timeout) clearTimeout(timeout);
 
-    try {
-      if (
-        req.body.options.plotOptions.series.dataLabels.hasOwnProperty(
-          "formatter"
-        )
-      ) {
-        req.body.options.plotOptions.series.dataLabels.formatter = function () {
-          return this.point.weight + " kWh";
-        };
-      }
-    } catch (e) {
-      console.error("Formatter Error:", e);
-    }
+    // try {
+    //   if (
+    //     req.body.options.plotOptions.series.dataLabels.hasOwnProperty(
+    //       "formatter"
+    //     )
+    //   ) {
+    //     req.body.options.plotOptions.series.dataLabels.formatter = function () {
+    //       return this.point.weight + " kWh";
+    //     };
+    //   }
+    // } catch (e) {
+    //   console.error("Formatter Error:", e);
+    // }
+
+    console.log("body:", req.body);
 
     exporter.export(req.body, function (err, result) {
       if (err) {
